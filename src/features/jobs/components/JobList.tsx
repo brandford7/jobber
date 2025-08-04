@@ -3,6 +3,7 @@ import { useJobs } from "../hooks/useJobs";
 import { Job } from "../schema/job.schema";
 import { JobCard } from "./JobCard";
 import { Spinner } from "@/components/Spinner";
+import { Pagination } from "@/components/Pagination";
 
 const JobList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,20 +23,12 @@ const JobList = () => {
   if (isError)
     return <p className="text-center text-destructive">Failed to load jobs.</p>;
 
-  /*
   const handlePageChange = (newPage: number) => {
     // Update just the page param, keeping others the same
     const updatedParams = new URLSearchParams(searchParams);
     updatedParams.set("page", newPage.toString());
     setSearchParams(updatedParams);
-  };*/
-
-const handlePageChange = () => {
-  setSearchParams();
-};
-
-handlePageChange();
-
+  };
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -44,6 +37,11 @@ handlePageChange();
       {data?.data.map((job: Job) => (
         <JobCard key={job.id} job={job} />
       ))}
+      <Pagination
+        currentPage={page}
+        totalPages={Math.ceil(data?.meta.total / data?.meta.limit)} // assuming your API returns `total`
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };

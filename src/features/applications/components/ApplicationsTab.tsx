@@ -4,6 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { useSearchParams } from "react-router";
 import { Application } from "../schema/application.schema";
+import { Pagination } from "@/components/Pagination";
 
 export const ApplicationsTab = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,13 +20,12 @@ export const ApplicationsTab = () => {
     limit: 10,
   });
 
-  const handlePageChange = () => {
-    setSearchParams()
-  }
+ const handlePageChange = (newPage: number) => {
+   const updatedParams = new URLSearchParams(searchParams);
+   updatedParams.set("page", newPage.toString());
+   setSearchParams(updatedParams);
+ };
 
-handlePageChange()
-
-  console.log(data);
 
   if (isLoading) {
     return (
@@ -65,6 +65,11 @@ handlePageChange()
           </CardContent>
         </Card>
       ))}
+      <Pagination
+        currentPage={page}
+        totalPages={Math.ceil(data?.meta.total / data?.meta.limit)} // assuming your API returns `total`
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
