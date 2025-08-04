@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { /*Briefcase,*/ MapPin, DollarSign, Clock, Badge } from "lucide-react";
+import { /*Briefcase,*/ MapPin, DollarSign,  Badge, Clock } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { Link} from "react-router";
 import { Job } from "../schema/job.schema";
@@ -38,7 +38,7 @@ export const JobCard = ({ job }: JobCardProps) => {
                 <DollarSign size={14} /> ${job.salary}
               </span>
             )}
-            <span className="flex items-center gap-1">
+               <span className="flex items-center gap-1">
               <Clock size={14} />
               {formatDistanceToNow(new Date(job.createdAt), {
                 addSuffix: true,

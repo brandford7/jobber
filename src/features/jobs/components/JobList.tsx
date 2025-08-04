@@ -11,7 +11,12 @@ const JobList = () => {
   const search = searchParams.get("search") || "";
   const location = searchParams.get("location") || "";
 
-  const { data, isLoading, isError } = useJobs({page, search, location, limit: 10 });
+  const { data, isLoading, isError } = useJobs({
+    page,
+    search,
+    location,
+    limit: 10,
+  });
 
   if (isLoading) return <Spinner />;
   if (isError)
@@ -23,6 +28,8 @@ const JobList = () => {
     updatedParams.set("page", newPage.toString());
     setSearchParams(updatedParams);
   };
+
+  handlePageChange(1);
 
   if (isLoading) return <p>Loading...</p>;
 

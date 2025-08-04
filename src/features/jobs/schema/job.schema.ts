@@ -8,6 +8,7 @@ export const JobSchema = z.object({
   location: z.string({ message: "Location is required" }),
   jobType: z.string({ message: "Job type is required" }),
   salary: z.string().optional(),
+  createdAt: z.date()
 });
 
 // TypeScript type from schema

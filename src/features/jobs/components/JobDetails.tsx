@@ -29,7 +29,7 @@ export const JobDetailsCard = ({ job }: JobDetailsCardProps) => {
               <DollarSign size={14} /> ${job.salary}
             </span>
           )}
-          <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1">
             <Clock size={14} />
             {formatDistanceToNow(new Date(job.createdAt), { addSuffix: true })}
           </span>
@@ -40,12 +40,12 @@ export const JobDetailsCard = ({ job }: JobDetailsCardProps) => {
           <p className="text-sm leading-relaxed">{job.description}</p>
         </div>
 
-        {job.experienceLevel && (
+        {/*   {job.experienceLevel && (
           <div>
             <h2 className="text-lg font-semibold mb-1">Experience Level</h2>
             <p className="text-sm capitalize">{job.experienceLevel}</p>
           </div>
-        )}
+        )} */}
       </CardContent>
     </Card>
   );

@@ -12,12 +12,18 @@ export const ApplicationsTab = () => {
   const search = searchParams.get("search") || "";
   const location = searchParams.get("location") || "";
 
-  const { data, isLoading, isError } = useMyApplications({
+  const handleSearch = () => {
+    setSearchParams(searchParams);
+  };
+
+  const { data, isLoading } = useMyApplications({
     page,
     search,
     location,
     limit: 10,
   });
+
+  handleSearch();
 
   console.log(data);
 
@@ -53,7 +59,7 @@ export const ApplicationsTab = () => {
               </div>*/}
               <Badge variant="secondary">Applied</Badge>
             </div>
-             <p className="text-xs text-muted-foreground mt-2">
+            <p className="text-xs text-muted-foreground mt-2">
               Applied on {new Date(application.appliedAt).toLocaleDateString()}
             </p>
           </CardContent>
