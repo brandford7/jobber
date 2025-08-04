@@ -28,9 +28,14 @@ const JobList = () => {
     const updatedParams = new URLSearchParams(searchParams);
     updatedParams.set("page", newPage.toString());
     setSearchParams(updatedParams);
-  };
-*/
-  setSearchParams()
+  };*/
+
+const handlePageChange = () => {
+  setSearchParams();
+};
+
+handlePageChange();
+
 
   if (isLoading) return <p>Loading...</p>;
 
