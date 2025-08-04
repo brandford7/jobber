@@ -22,14 +22,15 @@ const JobList = () => {
   if (isError)
     return <p className="text-center text-destructive">Failed to load jobs.</p>;
 
+  /*
   const handlePageChange = (newPage: number) => {
     // Update just the page param, keeping others the same
     const updatedParams = new URLSearchParams(searchParams);
     updatedParams.set("page", newPage.toString());
     setSearchParams(updatedParams);
   };
-
-  handlePageChange(1);
+*/
+  setSearchParams()
 
   if (isLoading) return <p>Loading...</p>;
 

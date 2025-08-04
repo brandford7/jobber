@@ -12,9 +12,7 @@ export const ApplicationsTab = () => {
   const search = searchParams.get("search") || "";
   const location = searchParams.get("location") || "";
 
-  const handleSearch = () => {
-    setSearchParams(searchParams);
-  };
+  setSearchParams();
 
   const { data, isLoading } = useMyApplications({
     page,
@@ -22,8 +20,6 @@ export const ApplicationsTab = () => {
     location,
     limit: 10,
   });
-
-  handleSearch();
 
   console.log(data);
 
