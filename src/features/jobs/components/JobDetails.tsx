@@ -29,10 +29,14 @@ export const JobDetailsCard = ({ job }: JobDetailsCardProps) => {
               <DollarSign size={14} /> ${job.salary}
             </span>
           )}
+          {job.createdAt && (
             <span className="flex items-center gap-1">
-            <Clock size={14} />
-            {formatDistanceToNow(new Date(job.createdAt), { addSuffix: true })}
-          </span>
+              <Clock size={14} />
+              {formatDistanceToNow(new Date(job.createdAt), {
+                addSuffix: true,
+              })}
+            </span>
+          )}
         </div>
 
         <div>
