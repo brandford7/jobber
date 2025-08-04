@@ -5,6 +5,7 @@ import apiClient from "@/lib/axios";
 import { logout, setLoading, setUser } from "@/features/redux/auth/authSlice";
 import { RootState } from "@/features/redux/store";
 import { Spinner } from "@/components/Spinner";
+import  { isCancel } from "axios";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
@@ -15,11 +16,18 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const { signal } = controller;
 
     const fetchUser = async () => {
+      // ✅ Skip request if no token is found
+      const token = localStorage.getItem("token");
+      if (!token) {
+        dispatch(setLoading(false));
+        return;
+      }
+
       try {
         const { data } = await apiClient.get("/auth/me", { signal });
         dispatch(setUser(data.user));
       } catch (err: unknown) {
-        if (err !== "CanceledError") {
+        if (!isCancel(err)) {
           dispatch(logout());
         }
       } finally {

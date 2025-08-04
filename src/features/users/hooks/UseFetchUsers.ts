@@ -11,9 +11,9 @@ export const useFetchUsers = (params: UserQueryParams) => {
     queryFn: async () => {
       const response = await apiClient.get("/users", { params });
 
-          const { success, data, meta } = response.data;
-          
-          return { success, data, meta };
+      const { success, data, meta } = response.data;
+
+      return { success, data, meta };
     },
     queryKey: ["users", params],
   });

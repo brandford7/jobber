@@ -16,6 +16,8 @@ export const useJobs = (params: JobQueryParams) => {
     queryFn: async () => {
       const response = await apiClient.get("/jobs", { params });
       const { success, data, meta } = response.data;
+      
+      
       return { success, data, meta };
       
     },

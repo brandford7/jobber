@@ -9,13 +9,13 @@ export interface JobApplicationQueryParams {
   location?: string;
 }
 
-export const useApplications = (params: JobApplicationQueryParams) => {
+export const useMyApplications = (params: JobApplicationQueryParams) => {
   return useQuery({
     queryKey: ["job-applications", params],
-    queryFn: async() => {
-      const response = await apiClient.get(`/job-applications`, { params });
-      const { success, data, meta } = response.data;
-      return { success, data,meta };
+    queryFn: async () => {
+      const response = await apiClient("/job-applications/me", { params });
+      const { data, success, meta } = response.data;
+      return { data, success, meta };
     },
   });
 };

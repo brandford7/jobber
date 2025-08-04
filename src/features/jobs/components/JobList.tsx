@@ -11,13 +11,11 @@ const JobList = () => {
   const search = searchParams.get("search") || "";
   const location = searchParams.get("location") || "";
 
-  const { data, isLoading,isError } = useJobs({ page, search, location, limit: 10 });
+  const { data, isLoading, isError } = useJobs({page, search, location, limit: 10 });
 
   if (isLoading) return <Spinner />;
   if (isError)
     return <p className="text-center text-destructive">Failed to load jobs.</p>;
-
-  
 
   const handlePageChange = (newPage: number) => {
     // Update just the page param, keeping others the same

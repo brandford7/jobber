@@ -22,6 +22,8 @@ export function AppRoutes() {
         <Route path="jobs/:id" element={<JobDetailsPage />} />
       </Route>
 
+      
+      
       <Route element={<AuthLayout />}>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
